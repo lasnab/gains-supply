@@ -5,7 +5,7 @@ const nextConfig = {
     appDir: true,
   },
   images: {
-    domains: ['links.gainssupply.com', 'links.papareact.com'],
+    domains: ['links.gainssupply.com', 'links.papareact.com', 'cdn.sanity.io'],
   },
   compiler: {
     styledComponents: true,

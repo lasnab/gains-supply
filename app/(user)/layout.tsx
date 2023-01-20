@@ -1,4 +1,5 @@
 import Header from '../../components/Header';
+import '../../styles/globals.css';
 
 export default function RootLayout({
   children,
@@ -7,8 +8,10 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <Header />
-      <body>{children}</body>
+      <body className="max-w-7xl mx-auto">
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }

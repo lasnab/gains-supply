@@ -1,41 +1,26 @@
-import React from 'react';
-import styled from 'styled-components';
-import { headerHeight } from '../styles/globalStyles';
 import Link from 'next/link';
+import Image from 'next/image';
 
-const Header: React.FC<{}> = () => {
+function Header() {
   return (
-    <HeaderContainer>
-      {/* <Logo></Logo> */}
-      <Title href="/" role="title">
-        Gains Supply
-      </Title>
-      <HeaderLinks>
-        <NavLink href="/all-posts">Posts</NavLink>
-        <NavLink href="/subscribe">subscibe</NavLink>
-      </HeaderLinks>
-    </HeaderContainer>
+    <header className="flex items-center justify-between space-x-2 font-bold px-10 py-5">
+      <div className="flex items-center space-x-2">
+        <Link
+          href="/"
+          className="flex items-center justify-between space-x-2 font-bold px-10 py-5"
+        >
+          <Image
+            className="rounded-full"
+            height={50}
+            width={50}
+            src="https://links.papareact.com/1m8"
+            alt="logo"
+          />
+        </Link>
+        <h1>Gains Supply</h1>
+      </div>
+    </header>
   );
-};
-
-const HeaderContainer = styled.nav`
-  position: fixed;
-  height: ${headerHeight};
-  width: 100%;
-  display: flex;
-  background-color: #ffe402;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Title = styled(Link)`
-  font-size: 24px;
-  color: black;
-  line-height: 0;
-`;
-
-const HeaderLinks = styled.div``;
-
-const NavLink = styled(Link)``;
+}
 
 export default Header;
