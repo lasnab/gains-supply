@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-const StudioLogo: React.FC<{ props: any }> = (props) => {
+const StudioLogo = (props: any) => {
   return (
     <div>
       <Image

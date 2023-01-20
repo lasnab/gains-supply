@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import React from 'react';
 
-const StudioNavbar: React.FC<{ props: any }> = (props) => {
+const StudioNavbar = (props: any) => {
   return (
     <div>
       <div>
