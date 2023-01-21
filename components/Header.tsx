@@ -3,10 +3,10 @@ import Image from 'next/image';
 
 function Header() {
   return (
-    <nav className="fixed w-full px-2 sm:px-4 py-2.5 bg-black">
+    <nav className="fixed z-50 h-12 w-full px-2 sm:px-4 py-2.5 bg-secondary">
       <div className="container flex flex-wrap items-center justify-center mx-auto">
         <Link href={'/'} className="flex items-center">
-          <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">
+          <span className="self-center text-2xl font-semibold whitespace-nowrap text-primary">
             GainsSupply
           </span>
         </Link>
@@ -22,7 +22,7 @@ function HamBurger() {
       <button
         data-collapse-toggle="navbar-default"
         type="button"
-        className="inline-flex items-center p-2 ml-3 text-sm md:hidden text-gray-500 focus:outline-none dark:text-gray-400 hover:text-white"
+        className="inline-flex items-center p-2 ml-3 text-sm md:hidden text-gray-500 focus:outline-none text-gray-400 hover:text-white"
         aria-controls="navbar-default"
         aria-expanded="false"
       >

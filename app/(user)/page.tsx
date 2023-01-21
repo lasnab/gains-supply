@@ -4,7 +4,15 @@ import { client } from '../../lib/sanity.client';
 import { PreviewSuspense } from 'next-sanity/preview';
 import PreviewBlogList from '../../components/PreviewBlogList';
 import BlogList from '../../components/BlogList';
-const query = groq`
+import CategoryHeader from '../../components/CategoryHeader';
+
+const categoriesQuery = groq`
+  *[_type=='category'] {
+    title,
+    _createdAt
+  } | order(title desc)
+`;
+const postsQuery = groq`
   *[_type=='post'] {
     ...,
     author->,
@@ -13,26 +21,26 @@ const query = groq`
 `;
 
 async function HomePage() {
-  if (previewData()) {
-    return (
-      <PreviewSuspense
-        fallback={
-          <div role={'status'}>
-            <p>Loading Preview Data...</p>
-          </div>
-        }
-      >
-        <PreviewBlogList query={query} />
-      </PreviewSuspense>
-    );
-  }
+  // if (previewData()) {
+  //   return (
+  //     <PreviewSuspense
+  //       fallback={
+  //         <div role={'status'}>
+  //           <p>Loading Preview Data...</p>
+  //         </div>
+  //       }
+  //     >
+  //       <PreviewBlogList query={query} />
+  //     </PreviewSuspense>
+  //   );
+  // }
 
-  const posts = await client.fetch(query);
+  const categories = await client.fetch(categoriesQuery);
+  const posts = await client.fetch(postsQuery);
   console.log(posts);
-
   return (
-    <div>
-      <h1 className="text-4xl blue">Welcome to Blog</h1>
+    <div className="mt-12 bg-black">
+      <CategoryHeader categories={categories} />
       <BlogList posts={posts} />
     </div>
   );
