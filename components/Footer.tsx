@@ -86,7 +86,7 @@ function SocialLinks() {
         <span className="sr-only">Mail</span>
       </Link>
       <Link
-        href="instagram.com/itsbanzs"
+        href="https://www.instagram.com/gainssupply.mag/"
         className="text-primary hover:text-accent"
       >
         <svg

@@ -58,6 +58,10 @@ interface Category extends Base {
   title: string;
 }
 
+interface AltTag extends Base {
+  keyword: string;
+}
+
 interface MainImage {
   _type: 'image';
   asset: Reference;
