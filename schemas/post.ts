@@ -46,11 +46,15 @@ export default defineType({
       },
     }),
     defineField({
-      name: 'imageAltTags',
-      title: 'Image Alt Tags',
+      name: 'imageAltText',
+      title: 'Image Alt Text',
       description:
-        'Put target keywords here for SEO visibility, comma separated',
+        'Put target keywords here for SEO visibility, less than 125 characters, specific description of image',
       type: 'string',
+      validation: (Rule) =>
+        Rule.max(124).warning(
+          `Alt text shouldn't be more than 124 characters.`
+        ),
     }),
     defineField({
       name: 'categories',

@@ -1,5 +1,5 @@
 export const getImageAltTags = (post: Post) => {
-  return post.author.name;
+  return post.imageAltText;
 };
 
 export const getFormattedDate = (createdAt: string) => {
