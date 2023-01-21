@@ -9,12 +9,12 @@ function CategoryHeader({ categories }: Props) {
   return (
     <div className="hidden md:flex md:visible justify-center items-center w-full bg-primary h-6 cursor-pointer">
       {categories.map((category) => (
-        <p
+        <div
           key={category._id}
           className="text-sm font-bold uppercase text-secondary px-4"
         >
           {category.title}
-        </p>
+        </div>
       ))}
     </div>
   );

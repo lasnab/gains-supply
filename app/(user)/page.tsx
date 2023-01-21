@@ -21,23 +21,22 @@ const postsQuery = groq`
 `;
 
 async function HomePage() {
-  // if (previewData()) {
-  //   return (
-  //     <PreviewSuspense
-  //       fallback={
-  //         <div role={'status'}>
-  //           <p>Loading Preview Data...</p>
-  //         </div>
-  //       }
-  //     >
-  //       <PreviewBlogList query={query} />
-  //     </PreviewSuspense>
-  //   );
-  // }
+  if (previewData()) {
+    return (
+      <PreviewSuspense
+        fallback={
+          <div role={'status'}>
+            <p>Loading Preview Data...</p>
+          </div>
+        }
+      >
+        <PreviewBlogList query={postsQuery} />
+      </PreviewSuspense>
+    );
+  }
 
   const categories = await client.fetch(categoriesQuery);
   const posts = await client.fetch(postsQuery);
-  console.log(posts);
   return (
     <div className="mt-12 bg-black">
       <CategoryHeader categories={categories} />

@@ -4,10 +4,12 @@ import { groq } from 'next-sanity';
 import urlFor from '../../../../lib/urlFor';
 import { PortableText } from '@portabletext/react';
 import { RichTextComponents } from '../../../../components/RichTextComponents';
+import { getFormattedDate, getImageAltTags } from '@/utils';
+import category from '@/schemas/category';
 
 type Props = { params: { slug: string } };
 
-export const revalidate = 60; // Revalidate this page every 60seconds
+export const revalidate = 60; // Revalidate this page every 60 seconds
 export async function generateStaticParams() {
   const query = groq`
     *[_type=='post'] 
@@ -30,64 +32,43 @@ async function Post({ params: { slug } }: Props) {
   }`;
 
   const post: Post = await client.fetch(query, { slug });
-  console.log(post);
+
+  const imageAltTags = getImageAltTags(post);
+  const formattedDate = getFormattedDate(post._createdAt);
+
   return (
-    <article className="px-10 pb-28 ">
-      <section className="space-y-2 border border-black text-black">
-        <div className="relative min-h-56 flex flex-col md:flex-row justify-between">
-          <div className="absolute top-0 w-full h-full opacity-10 blur-sm p-10">
-            <Image
-              className="object-cover object-center mx-auto"
-              src={urlFor(post.mainImage).url()}
-              alt={post.author.name}
-              fill
-            />
+    <article className="px-4 mt-14 flex flex-col justify-start items-center">
+      <div className="flex justify-center items-center py-4">
+        {post.categories.map((category) => (
+          <div
+            key={category._id}
+            className="border rounded-md border-secondary text-secondary text-sm p-2 mx-2"
+          >
+            {category.title}
           </div>
-          <section className="p-5 bg-red w-full">
-            <div className="flex flex-col md:flex-row justify-between gap-y-5">
-              <div>
-                <h1 className="text-4xl font-extrabold">{post.title}</h1>
-                <p>
-                  {new Date(post._createdAt)
-                    .toLocaleDateString('en-us', {
-                      day: '2-digit',
-                      month: '2-digit',
-                      year: '2-digit',
-                    })
-                    .replace(/\//g, '.')}
-                </p>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Image
-                  className="rounded-full"
-                  src={urlFor(post.mainImage).url()}
-                  alt={post.author.name}
-                  height={40}
-                  width={40}
-                />
-                <div className="w-64">
-                  <h3>{post.author.name}</h3>
-                  <div>{/* Author Bio */}</div>
-                </div>
-              </div>
-              <div>
-                <h2 className="italic pt-10">{post.description}</h2>
-                <div className="flex items-center justify-end mt-auto space-x-2">
-                  {post.categories.map((category) => (
-                    <div
-                      className="bg-gray-800 text-white px-3 py-1 rounded-full text-sm font-semibold mt-4"
-                      key={category._id}
-                    >
-                      {category.title}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </section>
-        </div>
-      </section>
-      <PortableText value={post.body} components={RichTextComponents} />
+        ))}
+      </div>
+      <div className="relative w-full h-96 md:h-[450px] cursor-pointer">
+        <Image
+          className="object-contain object-center"
+          src={urlFor(post.mainImage).url()}
+          alt={imageAltTags}
+          fill
+        />
+      </div>
+      <div className="text-secondary text-xl font-semibold m-0 uppercase pt-[30px] text-center">
+        {post.title}
+      </div>
+      <div className="text-neutral m-0 text-large pt-[30px] text-center ">
+        {post.description}
+      </div>
+      <div className="text-secondary capitalize text-center mt-[30px]">
+        <p className="font-semibold text-center">{`By ${post.author.name}`}</p>
+        <p className="font-extralight text-center">{formattedDate}</p>
+      </div>
+      <div className="text-neutral m-[30px] text-lg">
+        <PortableText value={post.body} components={RichTextComponents} />
+      </div>
     </article>
   );
 }

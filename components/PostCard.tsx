@@ -1,30 +1,16 @@
 import urlFor from '../lib/urlFor';
 import Image from 'next/image';
 import ClientSideRoute from './ClientSideRoute';
+import { getImageAltTags, getCategoryCopy, getFormattedDate } from '@/utils';
 
 type Props = {
   post: Post;
 };
 
 function PostCard({ post }: Props) {
-  const formattedDate = (createdAt: string) => {
-    return new Date(post._createdAt)
-      .toLocaleDateString('en-us', {
-        day: '2-digit',
-        month: '2-digit',
-        year: '2-digit',
-      })
-      .replace(/\//g, '.');
-  };
-
-  const categoryCopy = () => {
-    if (post.categories.length > 1) {
-      return `${post.categories[0].title} and more...`;
-    }
-    return post.categories[0].title;
-  };
-
-  const imageAltTags = post.author.name;
+  const imageAltTags = getImageAltTags(post);
+  const categoryCopy = getCategoryCopy(post.categories);
+  const formattedDate = getFormattedDate(post._createdAt);
 
   return (
     <ClientSideRoute route={`/post/${post.slug.current}`} key={post._id}>
@@ -39,7 +25,7 @@ function PostCard({ post }: Props) {
         </div>
         <div className="flex flex-col px-[15px] py-[20px] justify-between bg-black">
           <p className="underline uppercase font-bold text-xs m-0 block pt-1 ">
-            {categoryCopy()}
+            {categoryCopy}
           </p>
           <div className="line-clamp-2 font-poppins text-xl max-w-full overflow-hidden text-white font-bold not-italic m-0 capitalize pt-2 text-neutral">
             {post.title}
@@ -50,7 +36,7 @@ function PostCard({ post }: Props) {
             </div>
           </div>
           <p className="font-poppins text-sm text-neutral pt-2 m-0 block">
-            {formattedDate(post._createdAt)}
+            {formattedDate}
           </p>
         </div>
       </div>
