@@ -44,8 +44,10 @@ function PostCard({ post }: Props) {
           <div className="line-clamp-2 font-poppins text-xl max-w-full overflow-hidden text-white font-bold not-italic m-0 capitalize pt-2 text-neutral">
             {post.title}
           </div>
-          <div className="line-clamp-2 invisible md:visible max-w-full overflow-hidden text-white font-normal text-sm m-0 pt-2 text-neutral ">
-            {post.description}
+          <div className="hidden md:visible">
+            <div className="line-clamp-2 max-w-full overflow-hidden text-white font-normal text-sm m-0 pt-2 text-neutral ">
+              {post.description}
+            </div>
           </div>
           <p className="font-poppins text-sm text-neutral pt-2 m-0 block">
             {formattedDate(post._createdAt)}

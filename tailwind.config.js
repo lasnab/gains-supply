@@ -7,10 +7,10 @@ module.exports = {
   ],
   theme: {
     colors: {
-      primary: '#010400',
-      secondary: '#2B50AA',
+      primary: '#000000',
+      secondary: '#FFE403',
       accent: '#EE6352',
-      neutral: '#FFFBFC',
+      neutral: '#F7F7F7',
     },
     extend: {},
   },

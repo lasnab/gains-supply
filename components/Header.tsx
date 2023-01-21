@@ -3,12 +3,13 @@ import Image from 'next/image';
 
 function Header() {
   return (
-    <nav className="fixed z-50 h-12 w-full px-2 sm:px-4 py-2.5 bg-secondary">
-      <div className="container flex flex-wrap items-center justify-center mx-auto">
-        <Link href={'/'} className="flex items-center">
-          <span className="self-center text-2xl font-semibold whitespace-nowrap text-primary">
-            GainsSupply
-          </span>
+    <nav className="fixed flex z-50 h-12 w-full px-2 sm:px-4 py-2.5 bg-secondary">
+      <div className="flex flex-wrap items-center content-center justify-center mx-auto">
+        <Link
+          href={'/'}
+          className="text-3xl font-bold whitespace-nowrap text-primary"
+        >
+          GainsSupply
         </Link>
         {/* <HamBurger /> */}
       </div>
