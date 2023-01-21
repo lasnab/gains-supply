@@ -3,13 +3,13 @@ import { groq } from 'next-sanity';
 import { client } from '../../lib/sanity.client';
 import { PreviewSuspense } from 'next-sanity/preview';
 import PreviewBlogList from '../../components/PreviewBlogList';
-import BlogList from '../../components/BlogList';
 import CategoryHeader from '../../components/CategoryHeader';
+import PostCard from '../../components/PostCard';
 
 const categoriesQuery = groq`
   *[_type=='category'] {
     title,
-    _createdAt
+    _id
   } | order(title desc)
 `;
 const postsQuery = groq`
@@ -40,7 +40,11 @@ async function HomePage() {
   return (
     <div className="mt-12 bg-black">
       <CategoryHeader categories={categories} />
-      <BlogList posts={posts} />
+      <div className="grid md:grid-cols-3 grid-cols-1 pt-2">
+        {posts.map((post: Post) => (
+          <PostCard key={post._id} post={post} />
+        ))}
+      </div>
     </div>
   );
 }
