@@ -66,7 +66,7 @@ async function Post({ params: { slug } }: Props) {
         <p className="font-semibold text-center">{`By ${post.author.name}`}</p>
         <p className="font-extralight text-center">{formattedDate}</p>
       </div>
-      <div className="text-neutral m-[30px] text-lg">
+      <div className="text-neutral m-[30px] text-lg px-4 lg:px-36">
         <PortableText value={post.body} components={RichTextComponents} />
       </div>
     </article>
