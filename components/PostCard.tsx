@@ -17,7 +17,7 @@ function PostCard({ post }: Props) {
       <div className="col-span-1 flex flex-col bg-primary text-neutral h-full hover:text-secondary">
         <div className="relative w-full h-72 cursor-pointer bg-black">
           <Image
-            className="object-cover object-top"
+            className="object-cover object-left-top"
             src={urlFor(post.mainImage).url()}
             alt={imageAltTags}
             fill
