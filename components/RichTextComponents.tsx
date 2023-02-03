@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import urlFor from '../lib/urlFor';
+import ClientSideRoute from './ClientSideRoute';
 
 export const RichTextComponents = {
   types: {
@@ -44,14 +45,38 @@ export const RichTextComponents = {
     ),
   },
   marks: {
-    link: ({ children, value }: any) => {
-      const rel = !value.href.startsWith('/')
-        ? 'noreferrer noopener'
-        : undefined;
+    internalLink: ({ children, value }: any) => {
+      const { slug = {}, contentType } = value;
+      const href =
+        contentType === 'post'
+          ? `/post/${slug.current}`
+          : contentType === 'resource'
+          ? `/resource/${slug.current}`
+          : '/';
       return (
+        <ClientSideRoute
+          route={href}
+          className="underline decoration-green hover:decoration-black"
+        >
+          {children}
+        </ClientSideRoute>
+      );
+    },
+
+    link: ({ children, value }: any) => {
+      const { blank, href } = value;
+      return !!blank ? (
         <Link
-          href={value.href}
-          rel={rel}
+          href={href}
+          target="_blank"
+          rel="noopener"
+          className="underline decoration-green hover:decoration-black"
+        >
+          {children}
+        </Link>
+      ) : (
+        <Link
+          href={href}
           className="underline decoration-green hover:decoration-black"
         >
           {children}
