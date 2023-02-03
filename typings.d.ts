@@ -72,3 +72,9 @@ interface Title {
   _type: 'string';
   current: string;
 }
+
+interface Resource extends Base {
+  title: string;
+  slug: Slug;
+  body: Block[];
+}
