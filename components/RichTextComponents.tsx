@@ -6,7 +6,7 @@ import ClientSideRoute from './ClientSideRoute';
 export const RichTextComponents = {
   types: {
     image: ({ value }: any) => (
-      <div className="relative w-full h-96 m-10 mx-auto">
+      <div className="relative w-full h-96 m-4 mx-auto">
         <Image
           className="object-contain"
           src={urlFor(value).url()}
