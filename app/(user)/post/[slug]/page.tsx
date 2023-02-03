@@ -5,7 +5,7 @@ import urlFor from '../../../../lib/urlFor';
 import { PortableText } from '@portabletext/react';
 import { RichTextComponents } from '../../../../components/RichTextComponents';
 import { getFormattedDate, getImageAltTags } from '@/utils';
-import category from '@/schemas/category';
+import Link from 'next/link';
 
 type Props = { params: { slug: string } };
 
@@ -37,7 +37,7 @@ async function Post({ params: { slug } }: Props) {
   const formattedDate = getFormattedDate(post._createdAt);
 
   return (
-    <article className="px-4 mt-14 flex flex-col justify-start items-center">
+    <article className="px-4 my-14 flex flex-col justify-start items-center">
       <div className="flex justify-center items-center py-4">
         {post.categories.map((category) => (
           <div
@@ -68,6 +68,34 @@ async function Post({ params: { slug } }: Props) {
       </div>
       <div className="text-neutral m-[30px] text-lg px-4 lg:px-36">
         <PortableText value={post.body} components={RichTextComponents} />
+      </div>
+      <div
+        id="cta"
+        className=" text-neutral text-xl p-2 md:px-24 text-center mx-2 my-4 uppercase"
+      >
+        If you liked reading this post, please share it with your fellow gym
+        bros, and friends who you would like to see in the gym! Follow us on
+        Instagram
+        <Link
+          href="https://www.instagram.com/gainssupply.mag/"
+          className="text-accent"
+        >
+          {' '}
+          @gainssupply.mag
+        </Link>
+        , to stay updated with the latest content!
+      </div>
+      <div
+        id="disclaimer"
+        className="border rounded-md border-secondary text-secondary text-sm p-2 mx-2 mt-8"
+      >
+        <p>
+          All information posted on this website is for the purpose of sharing
+          personal experiences and thoughts only. Do not take any of this as
+          advice. Anything tried, would be at your own risk. The author and the
+          website will not accept any responsibility for any liability/harm
+          caused.
+        </p>
       </div>
     </article>
   );
