@@ -44,7 +44,7 @@ async function Resource({ params: { slug } }: Props) {
 
   return (
     <article className="px-4 my-14 flex flex-col justify-start items-center">
-      <div className="text-secondary text-xl font-semibold m-0 uppercase pt-[30px] text-center">
+      <div className="text-secondary text-2xl font-semibold m-0 uppercase pt-[30px] text-center">
         {resource.title}
       </div>
       <div className="text-secondary capitalize text-center mt-[30px]">
