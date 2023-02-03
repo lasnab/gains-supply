@@ -27,6 +27,16 @@ async function Post({ params: { slug } }: Props) {
   *[_type=='post' && slug.current == $slug][0] 
   {
     ...,
+    body[]{
+        ...,
+        markDefs[]{
+            ...,
+            _type == "internalLink" => {
+                "contentType": @.reference->_type,
+                "slug": @.reference->slug
+            }
+        }
+    },
     author->,
     categories[]->
   }`;
