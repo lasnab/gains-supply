@@ -5,7 +5,7 @@ import { schemaTypes } from './schemas';
 import StudioNavbar from './components/StudioNavbar';
 import StudioLogo from './components/StudioLogo';
 import { getDefaultDocumentNode } from './structure';
-import { studioTheme } from './styles/studioTheme';
+// import { studioTheme } from './styles/studioTheme';
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!;
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET!;
@@ -29,5 +29,5 @@ export default defineConfig({
       navbar: StudioNavbar,
     },
   },
-  theme: studioTheme,
+  // theme: studioTheme,
 });
