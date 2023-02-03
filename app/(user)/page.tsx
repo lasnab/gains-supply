@@ -40,7 +40,7 @@ async function HomePage() {
   return (
     <div className="mt-12 bg-black">
       <CategoryHeader categories={categories} />
-      <div className="grid md:grid-cols-3 grid-cols-1 pt-2">
+      <div className="grid md:grid-cols-3 grid-cols-1">
         {posts.map((post: Post) => (
           <PostCard key={post._id} post={post} />
         ))}

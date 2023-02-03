@@ -11,6 +11,7 @@ module.exports = {
       secondary: '#FFE403',
       accent: '#EE6352',
       neutral: '#F7F7F7',
+      myBlack: '#000000',
     },
     extend: {},
   },
