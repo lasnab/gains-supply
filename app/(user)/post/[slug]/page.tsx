@@ -4,7 +4,7 @@ import { groq } from 'next-sanity';
 import urlFor from '../../../../lib/urlFor';
 import { PortableText } from '@portabletext/react';
 import { RichTextComponents } from '../../../../components/RichTextComponents';
-import { getFormattedDate, getImageAltTags } from '@/utils';
+import { getFormattedDate } from '@/utils';
 import Link from 'next/link';
 
 type Props = { params: { slug: string } };
@@ -33,7 +33,7 @@ async function Post({ params: { slug } }: Props) {
 
   const post: Post = await client.fetch(query, { slug });
 
-  const imageAltTags = getImageAltTags(post);
+  const imageAltTags = post.imageAltText;
   const formattedDate = getFormattedDate(post._createdAt);
 
   return (

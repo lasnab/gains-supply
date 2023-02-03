@@ -1,14 +1,14 @@
 import urlFor from '../lib/urlFor';
 import Image from 'next/image';
 import ClientSideRoute from './ClientSideRoute';
-import { getImageAltTags, getCategoryCopy, getFormattedDate } from '@/utils';
+import { getCategoryCopy, getFormattedDate } from '@/utils';
 
 type Props = {
   post: Post;
 };
 
 function PostCard({ post }: Props) {
-  const imageAltTags = getImageAltTags(post);
+  const imageAltTags = post.imageAltText;
   const categoryCopy = getCategoryCopy(post.categories);
   const formattedDate = getFormattedDate(post._createdAt);
 

@@ -1,7 +1,3 @@
-export const getImageAltTags = (post: Post) => {
-  return post.imageAltText;
-};
-
 export const getFormattedDate = (createdAt: string) => {
   return new Date(createdAt)
     .toLocaleDateString('en-us', {
