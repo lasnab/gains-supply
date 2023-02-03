@@ -7,7 +7,7 @@ function CategoryHeader({ categories }: Props) {
     return null;
   }
   return (
-    <div className="hidden md:flex md:visible justify-center items-center w-full bg-primary h-6 cursor-pointer">
+    <div className="hidden md:flex md:visible justify-center items-center w-full bg-myBlack h-6 cursor-pointer">
       {categories.map((category) => (
         <div
           key={category._id}

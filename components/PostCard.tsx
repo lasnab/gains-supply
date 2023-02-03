@@ -1,14 +1,14 @@
 import urlFor from '../lib/urlFor';
 import Image from 'next/image';
 import ClientSideRoute from './ClientSideRoute';
-import { getImageAltTags, getCategoryCopy, getFormattedDate } from '@/utils';
+import { getCategoryCopy, getFormattedDate } from '@/utils';
 
 type Props = {
   post: Post;
 };
 
 function PostCard({ post }: Props) {
-  const imageAltTags = getImageAltTags(post);
+  const imageAltTags = post.imageAltText;
   const categoryCopy = getCategoryCopy(post.categories);
   const formattedDate = getFormattedDate(post._createdAt);
 
@@ -17,7 +17,7 @@ function PostCard({ post }: Props) {
       <div className="col-span-1 flex flex-col bg-primary text-neutral h-full hover:text-secondary">
         <div className="relative w-full h-72 cursor-pointer bg-black">
           <Image
-            className="object-cover object-top"
+            className="object-cover object-left-top"
             src={urlFor(post.mainImage).url()}
             alt={imageAltTags}
             fill
