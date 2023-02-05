@@ -17,7 +17,7 @@ const postsQuery = groq`
     ...,
     author->,
     categories[]->
-  } | order(_createdAt desc)
+  } | order(_createdAt asc)
 `;
 
 async function HomePage() {
